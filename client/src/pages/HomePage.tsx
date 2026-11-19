@@ -12,7 +12,8 @@ import { EmptyState } from '@/components/EmptyState';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { trackEvent } from '@/lib/analytics';
 import { truncate } from '@/lib/format';
-import { HERO_IMAGE, ABOUT_IMAGE } from '@/lib/brand';
+import { ABOUT_IMAGE } from '@/lib/brand';
+import { HeroSlider } from '@/components/HeroSlider';
 
 const VALUES = [
   {
@@ -118,27 +119,10 @@ export function HomePage() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-md pb-8 pr-3">
-              <div className="relative overflow-hidden rounded-arch border border-brand-200/80 bg-white p-2.5 shadow-glow">
-                <div className="overflow-hidden rounded-arch">
-                  <img
-                    src={settings.hero.imageUrl || HERO_IMAGE}
-                    alt="A collection of Ayesha Herbal & Beauty skincare products"
-                    width={1536}
-                    height={1024}
-                    loading="eager"
-                    className="aspect-[4/3.4] w-full object-cover object-center"
-                  />
-                </div>
-              </div>
-              <div className="absolute -bottom-1 right-0 flex h-28 w-28 animate-float flex-col items-center justify-center rounded-full border-[6px] border-cream bg-brand-500 text-center text-white shadow-soft">
-                <span className="text-[9px] font-semibold uppercase tracking-[0.14em]">Herbal</span>
-                <span className="font-display text-xl leading-tight">beauty</span>
-                <span className="text-[9px] font-semibold uppercase tracking-[0.14em]">every day</span>
-              </div>
-              <span className="absolute -left-3 top-6 text-3xl text-brand-300" aria-hidden="true">✿</span>
-              <span className="absolute -right-2 top-1/3 text-xl text-gold-400" aria-hidden="true">✦</span>
-            </div>
+            <HeroSlider
+              products={(featured.data?.length ? featured.data : bestsellers.data ?? []).slice(0, 6)}
+            />
+
           </div>
         </div>
 
