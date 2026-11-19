@@ -57,8 +57,8 @@ export function CategoryPage() {
             </header>
 
             {data.category.image ? (
-              <div className="mx-auto mt-6 aspect-[21/9] max-w-4xl overflow-hidden rounded-blob bg-brand-50">
-                <img src={data.category.image} alt={data.category.name} className="h-full w-full object-cover" />
+              <div className="mx-auto mt-6 flex h-56 max-w-4xl items-center justify-center overflow-hidden rounded-blob bg-gradient-to-br from-brand-50 to-brand-100/70 sm:h-72">
+                <img src={data.category.image} alt={data.category.name} className="h-full w-full object-contain p-4 drop-shadow-[0_18px_18px_rgba(106,11,53,0.2)]" />
               </div>
             ) : null}
 

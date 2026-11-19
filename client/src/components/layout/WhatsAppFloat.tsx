@@ -26,7 +26,7 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackEvent({ type: 'whatsapp_click' })}
-      className="fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-soft transition-transform hover:scale-105 active:scale-95"
+      className="fixed bottom-5 right-5 z-[60] hidden h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-soft transition-transform hover:scale-105 active:scale-95 md:flex"
       aria-label="Chat on WhatsApp"
     >
       <WhatsAppGlyph className="h-7 w-7" />

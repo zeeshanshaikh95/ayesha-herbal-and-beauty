@@ -142,13 +142,22 @@ export function HomePage() {
           </div>
         </div>
 
-        <div className="relative border-y border-brand-100 bg-white/60 py-3.5">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-soft">
-            <span>Herbal beauty</span>
-            <span className="text-brand-400">✦</span>
-            <span>Everyday self-care</span>
-            <span className="text-brand-400">✦</span>
-            <span>Made with care</span>
+        <div className="relative border-y border-brand-100 bg-white/60 py-3.5 overflow-hidden">
+          <div className="flex w-max animate-marquee items-center gap-8 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-soft">
+            {[0, 1].map((dup) => (
+              <div key={dup} className="flex shrink-0 items-center gap-8" aria-hidden={dup === 1}>
+                <span>Herbal beauty</span>
+                <span className="text-brand-500">✦</span>
+                <span>Everyday self-care</span>
+                <span className="text-brand-500">✦</span>
+                <span>Made with care</span>
+                <span className="text-brand-500">✦</span>
+                <span>Bridal favourites</span>
+                <span className="text-brand-500">✦</span>
+                <span>Order on WhatsApp</span>
+                <span className="text-brand-500">✦</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -206,30 +215,34 @@ export function HomePage() {
               />
             </div>
           ) : (
-            <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+            <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 scrollbar-thin sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 lg:grid-cols-5">
               {categories.data.map((cat, index) => (
                 <Link
                   key={cat._id}
                   to={`/category/${cat.slug}`}
-                  className={`card group relative overflow-hidden ${index === 0 ? 'col-span-2 lg:col-span-1' : ''}`}
+                  className="group relative flex w-[68vw] shrink-0 snap-start flex-col overflow-hidden rounded-[2rem] border border-brand-100 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft sm:w-auto"
                 >
-                  <div className="aspect-[4/3.4] overflow-hidden bg-brand-50">
+                  <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-gradient-to-b from-brand-50 to-brand-100/70 px-5 pb-5 pt-14">
+                    <span className="absolute left-5 top-4 font-display text-2xl font-semibold text-brand-300 transition-colors group-hover:text-brand-500">
+                      0{index + 1}
+                    </span>
                     {cat.image ? (
                       <img
                         src={cat.image}
                         alt={cat.name}
                         loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="max-h-full w-auto max-w-full object-contain drop-shadow-[0_18px_18px_rgba(106,11,53,0.22)] transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-2"
                       />
                     ) : (
                       <PlaceholderImage seed={cat.slug} />
                     )}
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent p-4 pt-12">
-                    <h3 className="font-display text-lg font-semibold text-white">{truncate(cat.name, 40)}</h3>
-                    <span className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/80">
-                      Explore <span aria-hidden="true">→</span>
-                    </span>
+                  <div className="flex items-center justify-between gap-3 px-5 py-4">
+                    <div>
+                      <h3 className="font-display text-lg font-semibold text-ink">{truncate(cat.name, 40)}</h3>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-600">Shop now</p>
+                    </div>
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
                   </div>
                 </Link>
               ))}

@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { MiniCart } from '@/components/MiniCart';
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
+import { MobileActionBar } from '@/components/layout/MobileActionBar';
 import { HomePage } from '@/pages/HomePage';
 import { ShopPage } from '@/pages/ShopPage';
 import { CategoryPage } from '@/pages/CategoryPage';
@@ -34,11 +35,12 @@ function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <main id="main-content" className="min-h-[60vh]">
+      <main id="main-content" className="min-h-[60vh] overflow-x-clip pb-24 md:pb-0">
         {children}
       </main>
       <Footer />
       <MiniCart />
+      <MobileActionBar />
       <WhatsAppFloat />
     </>
   );

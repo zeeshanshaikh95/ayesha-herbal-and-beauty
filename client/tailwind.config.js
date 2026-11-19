@@ -61,6 +61,10 @@ export default {
         arch: '42% 42% 1.5rem 1.5rem',
       },
       keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         'fade-up': {
           '0%': { opacity: '0', transform: 'translateY(14px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -79,6 +83,7 @@ export default {
         },
       },
       animation: {
+        marquee: 'marquee 28s linear infinite',
         'fade-up': 'fade-up 0.55s ease-out both',
         'fade-in': 'fade-in 0.4s ease-out both',
         'slide-in-right': 'slide-in-right 0.28s ease-out both',
