@@ -143,6 +143,16 @@ checked against their magic bytes, so a renamed non-image is rejected.
 Fully automated: `.github/workflows/deploy-pages.yml` builds and deploys on
 every push to `main` that touches the client.
 
+- **Current demo deployment:** `VITE_DEMO_MODE=true` bundles the 14-product
+  catalogue so the storefront works without the API at
+  `https://zeeshanshaikh95.github.io/ayesha-herbal-and-beauty/`.
+- **Going full-stack:** deploy the API, set `VITE_API_BASE_URL`, then set
+  `VITE_DEMO_MODE: 'false'` in the workflow. The admin panel and live catalogue
+  become active on the next build.
+- **Project-site base:** the workflow builds with
+  `VITE_BASE=/ayesha-herbal-and-beauty/`. If you connect the custom domain,
+  switch it back to `/`.
+
 - **API URL wiring:** set the repository variable `VITE_API_BASE_URL`
   (Settings → Secrets and variables → Actions → Variables) to the Render URL,
   e.g. `https://ayesha-herbal-and-beauty-api.onrender.com`. The workflow passes it to

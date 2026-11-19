@@ -1,8 +1,12 @@
 # Ayesha Herbal & Beauty — Website
 
+**Live storefront (static demo):** https://zeeshanshaikh95.github.io/ayesha-herbal-and-beauty/
+
 Mobile-first storefront for **Ayesha Herbal & Beauty**, an everyday herbal beauty and self-care brand. Primary conversion: browse → cart → **order on WhatsApp** (no payment gateway by design).
 
 The catalogue is the client's own published range — 14 products, five categories, real prices and product photography, all editable from a protected admin panel.
+
+> The GitHub Pages build currently runs with `VITE_DEMO_MODE=true`, so the storefront works from a bundled catalogue without the API. The admin panel, live edits and analytics require the Express API + MongoDB (see Deployment).
 
 ---
 
