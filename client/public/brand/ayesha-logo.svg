@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <clipPath id="circle">
+      <circle cx="512" cy="512" r="512"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#circle)">
+    <rect width="1024" height="1024" fill="#E91E63"/>
+    <!-- soft inner rings -->
+    <circle cx="512" cy="512" r="462" fill="none" stroke="#FFFAFC" stroke-opacity="0.22" stroke-width="3"/>
+    <circle cx="512" cy="512" r="432" fill="none" stroke="#FFFAFC" stroke-opacity="0.10" stroke-width="2"/>
+
+    <!-- crescent moon -->
+    <circle cx="512" cy="268" r="86" fill="#FFFAFC"/>
+    <circle cx="546" cy="240" r="86" fill="#E91E63"/>
+    <!-- star -->
+    <path d="M632 244l9.5 19.3 21.3 3.1-15.4 15 3.6 21.2-19-10-19 10 3.6-21.2-15.4-15 21.3-3.1z" fill="#FFFAFC"/>
+
+    <!-- wordmark -->
+    <text x="512" y="590" text-anchor="middle" fill="#FFFAFC"
+      font-family="Georgia, 'Times New Roman', serif" font-size="216" font-weight="700"
+      letter-spacing="-8">Ayesha</text>
+
+    <line x1="332" y1="648" x2="692" y2="648" stroke="#FFFAFC" stroke-opacity="0.75" stroke-width="2.5"/>
+
+    <text x="512" y="730" text-anchor="middle" fill="#FFFAFC"
+      font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="400"
+      letter-spacing="12">HERBAL &amp; BEAUTY</text>
+
+    <text x="512" y="792" text-anchor="middle" fill="#FFFAFC" fill-opacity="0.9"
+      font-family="Georgia, 'Times New Roman', serif" font-size="25" letter-spacing="9">EVERYDAY SELF-CARE</text>
+
+    <!-- botanical hairlines -->
+    <path d="M512 846c-26 16-42 38-46 64 27-3 48-16 59-38 5-10 6-19 5-27-7 0-13 0-18 1z" fill="#FFFAFC" fill-opacity="0.55"/>
+    <path d="M512 846c26 16 42 38 46 64-27-3-48-16-59-38-5-10-6-19-5-27 7 0 13 0 18 1z" fill="#FFFAFC" fill-opacity="0.35"/>
+  </g>
+</svg>
