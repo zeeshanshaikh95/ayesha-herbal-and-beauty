@@ -4,4 +4,4 @@ Allow: /
 # Admin area should not be indexed
 Disallow: /admin
 
-Sitemap: https://ayeshaherbalandbeauty.com/sitemap.xml
+Sitemap: https://zeeshanshaikh95.github.io/ayesha-herbal-and-beauty/sitemap.xml

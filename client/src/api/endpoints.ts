@@ -1,4 +1,11 @@
 import { api, resolveAssetUrl } from './client';
+import {
+  DEMO_MODE,
+  demoCategories,
+  demoGallery,
+  demoProducts,
+  demoPublicSettings,
+} from '@/lib/demoCatalogue';
 import type {
   AdminSettings,
   AnalyticsSummary,
@@ -58,7 +65,43 @@ function normSettings(s: PublicSettings): PublicSettings {
 
 // ── Public ──────────────────────────────────────────────────────
 
-export const publicApi = {
+function demoProductList(params: ProductQueryParams): Product[] {
+  let list = demoProducts.map(normProduct);
+
+  if (params.search) {
+    const term = params.search.toLowerCase();
+    list = list.filter(
+      (p) =>
+        p.name.toLowerCase().includes(term) ||
+        p.description.toLowerCase().includes(term)
+    );
+  }
+
+  if (params.category) {
+    list = list.filter((p) => p.category?.slug === params.category);
+  }
+
+  switch (params.sort) {
+    case 'price_asc':
+      list = [...list].sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
+      break;
+    case 'price_desc':
+      list = [...list].sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
+      break;
+    case 'bestseller':
+      list = [...list].sort((a, b) => Number(b.bestseller) - Number(a.bestseller));
+      break;
+    case 'featured':
+    default:
+      list = [...list].sort(
+        (a, b) => Number(b.featured) - Number(a.featured) || a.displayOrder - b.displayOrder
+      );
+  }
+
+  return list;
+}
+
+const realPublicApi = {
   getSettings: () =>
     api.get<{ settings: PublicSettings }>('/settings').then((r) => ({
       settings: normSettings(r.settings),
@@ -100,6 +143,42 @@ export const publicApi = {
       .then((r) => ({ items: r.items.map(normGallery) })),
   track: (event: TrackPayload) => api.post('/analytics/events', event),
 };
+
+const demoApi = {
+  getSettings: () => Promise.resolve({ settings: normSettings(demoPublicSettings) }),
+  listProducts: (params: ProductQueryParams = {}) =>
+    Promise.resolve({ products: demoProductList(params) }),
+  getProduct: (slug: string) => {
+    const product = demoProducts.map(normProduct).find((p) => p.slug === slug);
+    return product
+      ? Promise.resolve({ product })
+      : Promise.reject(new Error('Product not found'));
+  },
+  getRelated: (slug: string) => {
+    const source = demoProducts.find((p) => p.slug === slug);
+    const products = demoProductList({})
+      .filter((p) => p.slug !== slug && p.category?.slug === source?.category?.slug)
+      .sort((a, b) => Number(b.bestseller) - Number(a.bestseller) || Number(b.featured) - Number(a.featured))
+      .slice(0, 4);
+    return Promise.resolve({ products });
+  },
+  listCategories: () =>
+    Promise.resolve({ categories: demoCategories.map(normCategory) }),
+  getCategory: (slug: string) => {
+    const category = demoCategories.map(normCategory).find((c) => c.slug === slug);
+    if (!category) return Promise.reject(new Error('Category not found'));
+    return Promise.resolve({
+      category,
+      products: demoProductList({ category: slug }),
+    });
+  },
+  listReviews: () => Promise.resolve({ reviews: [] as Review[] }),
+  listGallery: () =>
+    Promise.resolve({ items: demoGallery.map(normGallery) }),
+  track: (_event: TrackPayload) => Promise.resolve({ ok: true }),
+};
+
+export const publicApi = DEMO_MODE ? demoApi : realPublicApi;
 
 export interface ProductQueryParams {
   search?: string;

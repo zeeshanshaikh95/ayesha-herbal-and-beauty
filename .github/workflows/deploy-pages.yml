@@ -43,17 +43,19 @@ jobs:
 
       - name: Build client
         env:
-          # The site is served from the ROOT of the custom domain
-          # (https://ayeshaherbalandbeauty.com/), so built asset URLs must be
-          # root-relative. Using a /<repo>/ project-site prefix here makes
-          # every asset 404 and leaves a blank page.
-          VITE_BASE: /
+          # Project site URL: https://zeeshanshaikh95.github.io/ayesha-herbal-and-beauty/
+          # VITE_BASE must include the repository name for Pages project sites
+          # (a trailing slash is required). Switch back to "/" when the custom
+          # domain is connected.
+          VITE_BASE: /ayesha-herbal-and-beauty/
+          # Static-catalogue demo build: the storefront (products, cart,
+          # WhatsApp ordering) works without the API. Turn this off once the
+          # Render API + Atlas database are live and VITE_API_BASE_URL is set.
+          VITE_DEMO_MODE: 'true'
           # Repository variable holding the deployed API origin. No fallback on
           # purpose: a production bundle must never embed a localhost API URL.
-          # If the variable is unset the client uses same-origin relative URLs,
-          # which fail loudly instead of silently calling a dev machine.
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
-          VITE_PUBLIC_SITE_URL: https://ayeshaherbalandbeauty.com
+          VITE_PUBLIC_SITE_URL: https://zeeshanshaikh95.github.io/ayesha-herbal-and-beauty
         run: npm run build --workspace client
 
       # SPA deep links (e.g. /product/xyz) resolve through 404.html on Pages.

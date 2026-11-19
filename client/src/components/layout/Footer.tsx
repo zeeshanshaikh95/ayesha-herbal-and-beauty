@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSettings } from '@/context/SettingsContext';
 import { WhatsAppGlyph } from '@/components/ProductCard';
 import { BrandLogo } from '@/components/BrandLogo';
+import { DEMO_MODE } from '@/lib/demoCatalogue';
 
 export function Footer() {
   const { settings } = useSettings();
@@ -85,12 +86,16 @@ export function Footer() {
 
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-center text-xs text-ink-soft/80 sm:flex-row sm:px-6 sm:text-left">
         <p>© {new Date().getFullYear()} Ayesha Herbal &amp; Beauty. All rights reserved.</p>
-        <Link
-          to="/admin/login"
-          className="text-[11px] text-ink-soft/50 underline decoration-transparent underline-offset-2 transition-colors hover:text-ink-soft hover:decoration-current"
-        >
-          Admin Login
-        </Link>
+        {!DEMO_MODE ? (
+          <Link
+            to="/admin/login"
+            className="text-[11px] text-ink-soft/50 underline decoration-transparent underline-offset-2 transition-colors hover:text-ink-soft hover:decoration-current"
+          >
+            Admin Login
+          </Link>
+        ) : (
+          <span className="text-[11px] text-ink-soft/50">Herbal beauty, made with care</span>
+        )}
       </div>
     </footer>
   );
