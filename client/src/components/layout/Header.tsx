@@ -77,8 +77,10 @@ export function Header() {
             className="relative rounded-full p-2 text-ink transition-colors hover:bg-brand-50"
             aria-label={`Open cart (${count} items)`}
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
-              <path d="M6 8h12l-1.2 12H7.2L6 8zM9 8a3 3 0 016 0" strokeLinecap="round" />
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="20" r="1.4" />
+              <circle cx="18" cy="20" r="1.4" />
+              <path d="M3 4h2l2.2 9.5a1 1 0 0 0 1 .8h9.6a1 1 0 0 0 1-.8L20 7H6" />
             </svg>
             {count > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-brand-600 px-1 text-[10px] font-bold text-white">

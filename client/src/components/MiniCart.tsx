@@ -76,8 +76,10 @@ export function MiniCart() {
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center">
-            <svg viewBox="0 0 48 48" className="h-14 w-14 text-brand-200" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M14 16h20l-2 20H16l-2-20zM20 16a4 4 0 018 0" strokeLinecap="round" />
+            <svg viewBox="0 0 48 48" className="h-14 w-14 text-brand-200" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="40" r="3" />
+              <circle cx="36" cy="40" r="3" />
+              <path d="M6 8h6l4.4 19a2 2 0 0 0 2 1.6h18a2 2 0 0 0 2-1.6L42 16H14" />
             </svg>
             <p className="font-display text-lg font-semibold text-ink">Your cart is empty</p>
             <p className="text-sm text-ink-soft">Add products to order them together on WhatsApp.</p>
